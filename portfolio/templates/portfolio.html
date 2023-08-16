@@ -7,12 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="Results-driven Python developer with expertise in creating efficient and scalable web applications. Ready to leverage skills and passion for creating exceptional user experiences.">
-    <meta name="keywords" content="Python developer, web applications, software engineer, Django, Flask, Arth, Arth Patel">
+    <meta name="keywords"
+          content="Python developer, web applications, software engineer, Django, Flask, Arth, Arth Patel">
     <meta name="author" content="Arth Patel">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
     <title>Coder Portfolio - Arth Patel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <style>
         /* Reset styles and background */
         body {
@@ -110,9 +112,63 @@
             object-fit: cover;
             margin-bottom: 10px;
         }
+
+        {% comment %}body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background-color: #232323;
+            color: #fff;
+            background-image: url("{% static 'images/ArthPatelProfile.jpg' %}"); /* Add your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }{% endcomment %}
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            background-color: #232323;
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin: 0;
+            color: #f2c82d; /* Change the text color */
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        /* ... Rest of your CSS styles ... */
+
+        /* Particle canvas */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #232323; /* Change the particle background color */
+        }
+
     </style>
 </head>
 <body>
+<canvas id="particles-js"></canvas>
 <div class="header">
     <img src="{% static 'images/ArthPatelProfile.jpg' %}" alt="Arth Patel" class="profile-image">
     <h1>Arth Patel</h1>
@@ -132,7 +188,9 @@
         <div class="skill">Python</div>
         <div class="skill">JavaScript</div>
         <div class="skill">Django</div>
-        <div class="skill">Flask</div>
+        <div class="skill">Go</div>
+        <div class="skill">AI</div>
+        <div class="skill">ML</div>
         <!-- Add more skills here -->
     </div>
 
@@ -158,4 +216,35 @@
     </div>
 </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        Particles.init({
+            selector: '#particles-js', // Use the correct selector for the canvas element
+            maxParticles: 100,
+            sizeVariations: 3,
+            color: ['#f2c82d', '#4CAF50', '#2196F3'], // Change particle colors
+            connectParticles: true,
+            connectLineColor: '#ffffff', // Change the line color between dots
+            responsive: [
+                {
+                    breakpoint: 768,
+                    options: {
+                        maxParticles: 50
+                    }
+                },
+                {
+                    breakpoint: 425,
+                    options: {
+                        maxParticles: 30
+                    }
+                }
+            ]
+            // ... other options
+        });
+    });
+</script>
+
+
 </html>
