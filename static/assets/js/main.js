@@ -1,46 +1,45 @@
-
-$(function(){
+$(function () {
 
     $(window).on('load', function () {
         $('.page-loader').delay('500').fadeOut(1000);
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         //Set Theme Color
         color4()
 
-        $(document).on('click', '.icon-menu', function() {
+        $(document).on('click', '.icon-menu', function () {
             $('.responsive-sidebar-menu').addClass('active');
         });
-        $(document).on('click', '.responsive-sidebar-menu .overlay', function() {
+        $(document).on('click', '.responsive-sidebar-menu .overlay', function () {
             $('.responsive-sidebar-menu').removeClass('active');
         });
 
-        $(document).on('click', '.menu li .scroll-to', function() {
+        $(document).on('click', '.menu li .scroll-to', function () {
             $('.responsive-sidebar-menu').removeClass('active');
         })
 
 
-        $(document).on('click', ".color-boxed a", function() {
+        $(document).on('click', ".color-boxed a", function () {
             $(".color-boxed a").removeClass("clr-active");
             $(this).addClass("clr-active");
         });
-        
-        $(document).on('click', ".global-color .setting-toggle", function() {
+
+        $(document).on('click', ".global-color .setting-toggle", function () {
             $(".global-color").addClass("active");
         });
 
-        $(document).on('click', ".global-color .inner .overlay, .global-color .inner .global-color-option .close-settings", function() {
+        $(document).on('click', ".global-color .inner .overlay, .global-color .inner .global-color-option .close-settings", function () {
             $(".global-color").removeClass("active");
         });
 
     });
 
-    $(window).scroll(function() {
-            
+    $(window).scroll(function () {
+
         var windscroll = $(window).scrollTop();
         if (windscroll >= 0) {
-            $('.page-section').each(function(i) {
+            $('.page-section').each(function (i) {
                 if ($(this).position().top <= windscroll - -1) {
                     $('.scroll-nav .scroll-to.active').removeClass('active');
                     $('.scroll-nav .scroll-to').eq(i).addClass('active');
@@ -58,7 +57,7 @@ $(function(){
         }
 
         if (windscroll >= 0) {
-            $('.scroll-to-page').each(function(i) {
+            $('.scroll-to-page').each(function (i) {
 
                 var wscrolldecress = windscroll + 1;
                 // console.log(wscrolldecress);
@@ -80,11 +79,6 @@ $(function(){
     }).scroll();
 
 
-
-
-
-
-
     if ($('.testimonial-slider').length) {
         var testimonial = $('.testimonial-slider').owlCarousel({
             items: 1,
@@ -95,28 +89,28 @@ $(function(){
             loop: false,
             nav: false,
             dots: false,
-            onInitialized  : counter, //When the plugin has initialized.
-            onTranslated : counter //When the translation of the stage has finished.
+            onInitialized: counter, //When the plugin has initialized.
+            onTranslated: counter //When the translation of the stage has finished.
         });
 
-        $('.testimonial-nav .next').on('click', function() {
+        $('.testimonial-nav .next').on('click', function () {
             testimonial.trigger('next.owl.carousel');
         })
-        $('.testimonial-nav .prev').on('click', function() {
+        $('.testimonial-nav .prev').on('click', function () {
             testimonial.trigger('prev.owl.carousel', [300]);
         })
 
 
         function counter(event) {
-            var element   = event.target;         // DOM element, in this example .owl-carousel
-            var items     = event.item.count;     // Number of items
-            var item      = event.item.index + 1;     // Position of the current item
-        
-        // it loop is true then reset counter from 1
-        if(item > items) {
+            var element = event.target;         // DOM element, in this example .owl-carousel
+            var items = event.item.count;     // Number of items
+            var item = event.item.index + 1;     // Position of the current item
+
+            // it loop is true then reset counter from 1
+            if (item > items) {
                 item = item - items
-        }
-        $('#testimonial-slide-count').html("<span class='left'>"+item+"</span> / "+items)
+            }
+            $('#testimonial-slide-count').html("<span class='left'>" + item + "</span> / " + items)
         }
     }
 
@@ -178,7 +172,7 @@ $(function(){
 
     //     var offset = gsap.getProperty("#smooth-content", "y");
     //     var position = jQuery(target).get(0).getBoundingClientRect().top - offset;
-    
+
 
     //     e.addEventListener('click', (e) => {
     //         e.preventDefault();
@@ -206,12 +200,10 @@ $(function(){
     //         });
     //     });
 
-        
-    
+
     // });
 
 });
-
 
 
 function scroll_animations() {
@@ -272,4 +264,28 @@ function scroll_animations() {
         gsap.from(box, gsap_obj);
     });
 }
+
 scroll_animations();
+
+
+$('#submit-form').on('click', function () {
+    let form = $(this).closest('form')
+
+    $.ajax({
+        url: get_url(),
+        type: "POST",
+        headers: {//<==
+            "X-CSRFTOKEN": get_csrf()//<==
+        },
+        data: new FormData(form[0]),
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            alert(data.msg)
+            form[0].reset()
+        },
+        error: function (data) {
+            alert(data.msg)
+        }
+    })
+})

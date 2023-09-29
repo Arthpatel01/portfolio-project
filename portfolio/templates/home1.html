@@ -818,7 +818,7 @@
             </section>
 
 
-            <section class="pricing-area page-section scroll-to-page" id="pricing">
+            {% comment %}<section class="pricing-area page-section scroll-to-page" id="pricing">
                 <div class="custom-container">
                     <div class="pricing-content content-width">
                         <div class="section-header">
@@ -883,7 +883,7 @@
 
                     </div>
                 </div>
-            </section>
+            </section>{% endcomment %}
 
 
             <section class="contact-area page-section scroll-content" id="contact">
@@ -900,7 +900,7 @@
                         <p id="required-msg">* Marked fields are required to fill.</p>
 
                         <form class="contact-form scroll-animation" data-animation="fade_from_bottom" method="POST"
-                              action="mailer.php">
+                              enctype="multipart/form-data">
                             <div class="alert alert-success messenger-box-contact__msg" style="display: none"
                                  role="alert">
                                 Your message was sent successfully.
@@ -930,9 +930,9 @@
                                         <label for="subject">subject <sup>*</sup></label>
                                         <select name="subject" id="subject">
                                             <option value="">Select a subject</option>
-                                            <option value="subject1">Subject 1</option>
-                                            <option value="subject2">Subject 2</option>
-                                            <option value="subject3">Subject 3</option>
+                                            <option value="freelancer">Hire Me as Freelancer</option>
+                                            <option value="employee">Hire Me as Employee</option>
+                                            <option value="other">Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -962,9 +962,10 @@
 
                                     </div>
                                 </div>
+                                <input name="action" value="contact-me-submit" hidden>
                                 <div class="col-md-12">
                                     <div class="input-group submit-btn-wrap">
-                                        <button class="theme-btn" name="submit" type="submit" id="submit-form">send
+                                        <button class="theme-btn" type="button" id="submit-form">send
                                             message
                                         </button>
                                     </div>
@@ -991,5 +992,13 @@
 <script src="{% static 'assets/js/main.js' %}"></script>
 <script src="{% static 'assets/js/ajax-form.js' %}"></script>
 <script src="{% static 'assets/js/color.js' %}"></script>
+<script>
+    function get_url() {
+        return '{% url "index2" %}'
+    }
+    function get_csrf(){
+        return "{{ csrf_token }}"
+    }
+</script>
 </body>
 </html>
