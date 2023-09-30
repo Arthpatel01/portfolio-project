@@ -5,6 +5,9 @@ from django.shortcuts import render
 from django.views.generic import CreateView
 
 from portfolio.models import ContactMe
+from django.core.mail import send_mail
+
+from portfolio_project import settings
 
 
 # Create your views here.
@@ -47,6 +50,7 @@ class IndexView(CreateView):
                         data['attachment'] = attachment
 
                 if data:
+                    # send_email = send_email_123(action=action, data=data)
                     ContactMe.objects.create(**data)
                     msg = "Saved Successfully!!"
                     code = "success"
@@ -73,3 +77,18 @@ def download_file(request, file_path):
         response = FileResponse(file)
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
         return response
+
+
+def send_email_123(action, data):
+    response = 'Error'
+    try:
+        if action == "contact-me-submit" and data:
+            r = send_mail(subject=data['subject'], message=data["message"],
+                          recipient_list=["arthpatelportfolio@gmail.com"],
+                          from_email=settings.EMAIL_HOST_USER)
+            print("Email Response:", r)
+            response = "Success"
+    except Exception as e:
+        print("Error:", e)
+
+    return response
