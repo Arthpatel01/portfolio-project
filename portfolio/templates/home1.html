@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arth Patel</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/AP-logo/favicon-32x32.png' %}">
     <meta name="og:title"
           content="Arth Patel - Full-Stack Developer | Python, JavaScript, AI, Scripting, Automation, Data Science, AWS, C, Go Language, Django, Flask, Fastapi, Css, Jquery, Docker, Git, Github, Node, NodeJs, npm, React | Featured Projects | Software Developer, Developer, App Development, Ecommerce">
     <meta name="description"
@@ -144,7 +144,12 @@
             <p>Social</p>
             <ul class="social-links d-flex align-items-center">
                 <li>
-                    <a href="https://twitter.com/ArthEverywhere"><i class="lab la-twitter"></i></a>
+                    <a href="https://twitter.com/ArthEverywhere">{% comment %}<i class="lab la-twitter"></i>{% endcomment %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-twitter-x" viewBox="0 0 16 16">
+                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                        </svg>
+                    </a>
                 </li>
                 <li>
                     <a href="https://www.linkedin.com/in/arth-patel20/"><i class="lab la-linkedin"></i></a>
@@ -208,13 +213,18 @@
         <img src="{% static 'images/Arth-Logo.png' %}" alt="Logo">
         <span class="designation">Software Dev. <br> & AI / ML</span>
     </div>
-    <img class="me" src="{% static 'images/me/sc2.png' %}" alt="Me">
+    <img class="me" src="{% static 'images/me/me4_2.jpg' %}" alt="Arth Patel">
     {% comment %}<h2 class="email">jaxpatel29@gmail.com</h2>{% endcomment %}
     <h2 class="address">Base in Vadodara, India</h2>
     <p class="copyright">&copy; 2022 Arth Patel. All Rights Reserved</p>
     <ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
         <li>
-            <a href="https://twitter.com/ArthEverywhere"><i class="lab la-twitter"></i></a>
+            <a href="https://twitter.com/ArthEverywhere">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-twitter-x" viewBox="0 0 16 16">
+                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                </svg>
+            </a>
         </li>
         <li>
             <a href="https://www.linkedin.com/in/arth-patel20/"><i class="lab la-linkedin"></i></a>
@@ -253,13 +263,18 @@
                     <img src="{% static 'images/Arth-Logo.png' %}" alt="Logo">
                     <span class="designation">Software Dev. <br> & AI / ML</span>
                 </div>
-                <img class="me" src="{% static 'images/me/sc2.png' %}" alt="Me">
+                <img class="me" src="{% static 'images/me/me4_2.jpg' %}" alt="Arth Patel">
                 {% comment %}<h2 class="email">jaxpatel29@gmail.com</h2>{% endcomment %}
                 <h2 class="address">Base in Vadodara, India</h2>
                 <p class="copyright">&copy; 2022 Arth Patel. All Rights Reserved</p>
                 <ul class="social-profile d-flex align-items-center flex-wrap justify-content-center">
                     <li>
-                        <a href="https://twitter.com/ArthEverywhere"><i class="lab la-twitter"></i></a>
+                        <a href="https://twitter.com/ArthEverywhere">{% comment %}<i class="lab la-twitter"></i>{% endcomment %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                            </svg>
+                        </a>
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/in/arth-patel20/"><i class="lab la-linkedin"></i></a>
@@ -743,11 +758,17 @@
                                 <div class="testimonial-item">
                                     <div class="testimonial-item-inner">
                                         <div class="author d-flex align-items-center">
-                                            <img src="{% static 'assets/images/testimonial-1.jpg' %}" alt="Testimonial">
-                                            <div class="right">
+                                            <img src="{% static 'assets/images/testimo1.jpg' %}" alt="Testimonial">
+                                            {% comment %}<div class="right">
                                                 <h3>Paublo Dybala</h3>
                                                 <p class="designation">CEO of <span>IBM Global</span></p>
+                                            </div>{% endcomment %}
+                                            <div class="right">
+                                                <h3>Michael Chen</h3>
+                                                <p class="designation">President & CEO at
+                                                    <span>GlobalTech Innovations</span></p>
                                             </div>
+
                                         </div>
                                         <p>“Arth Patel - A Developer with the creativity, professional and
                                             master of code. Much more than what i'm expect.
@@ -759,12 +780,18 @@
                                 <div class="testimonial-item">
                                     <div class="testimonial-item-inner">
                                         <div class="author d-flex align-items-center">
-                                            <img src="{% static 'assets/images/testimonial-2.jpg' %}" alt="Testimonial">
-                                            <div class="right">
+                                            <img src="{% static 'assets/images/testimo2.jpg' %}" alt="Testimonial">
+                                            {% comment %}<div class="right">
                                                 <h3>Christina Morillo</h3>
                                                 <p class="designation">Product Management of
                                                     <span>Invision App Inc</span></p>
+                                            </div>{% endcomment %}
+                                            <div class="right">
+                                                <h3>Sanjay Gupta</h3>
+                                                <p class="designation">Chief Technology Officer at <span>IndoTech Solutions</span>
+                                                </p>
                                             </div>
+
                                         </div>
                                         <p>“Arth Patel was a real pleasure to work with and we look
                                             forward to working with him again. He's definitely the kind of
@@ -776,11 +803,17 @@
                                 <div class="testimonial-item">
                                     <div class="testimonial-item-inner">
                                         <div class="author d-flex align-items-center">
-                                            <img src="{% static 'assets/images/testimonial-3.jpg' %}" alt="Testimonial">
-                                            <div class="right">
+                                            <img src="{% static 'assets/images/testimo3.jpg' %}" alt="Testimonial">
+                                            {% comment %}<div class="right">
                                                 <h3>Phil Foden</h3>
                                                 <p class="designation">Director of <span>Envato LLC</span></p>
+                                            </div>{% endcomment %}
+                                            <div class="right">
+                                                <h3>Akiko Tanaka</h3>
+                                                <p class="designation">Managing Director at <span>TechSage Solutions</span>
+                                                </p>
                                             </div>
+
                                         </div>
                                         <p>“Extremely profressional and fast service!. Arth is a master
                                             of code and he also very creative. We done 3 projects with
@@ -802,7 +835,7 @@
                         </div>
 
                         <div class="clients-logos">
-                            <h4 class="scroll-animation" data-animation="fade_from_bottom">work with 60+ brands
+                            <h4 class="scroll-animation" data-animation="fade_from_bottom">work with 10+ brands
                                 worldwide</h4>
                             <div class="row align-items-center">
                                 <div class="col-md-3 scroll-animation" data-animation="fade_from_left">
