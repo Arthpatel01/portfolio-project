@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/AP-logo/favicon-32x32.png' %}">
+    <meta name="og:title"
+          content="Arth Patel - Full-Stack Developer | Python, JavaScript, AI, Scripting, Automation, Data Science, AWS, C, Go Language, Django, Flask, Fastapi, Css, Jquery, Docker, Git, Github, Node, NodeJs, npm, React | Featured Projects | Software Developer, Developer, App Development, Ecommerce">
+    <meta name="description"
+          content="Explore the skills and expertise of Arth Patel, a talented full-stack developer with proficiency in Python, JavaScript, Go, Css, Jquery, Machine Learning, Data Science, Django, Flask, Fastapi, API, AI, Docker, Git, Github, Node, NodeJs, npm, React. Discover his featured projects, including Gearx Industry Website, ML Model for Ecommerce, and more. Trusted by 60+ global brands.">
+    <meta name="keywords"
+          content="Arth Patel, Developer, Software, AI, ML, Data Science, Data Analytics, App, Website, lookup, Arth, Vadodara, Gujarat, Baroda, Python, Java Script, Css, HTML, Go, AWS, Git, GitHub, Docker, C, C++, C#, Pycharm, VS Code, Programming, Programmer, Developer, Data, Data Structure, Algorithms, Cloud, Node, React, JS, Top, Best, Developer, Hire, Upwork, Freelancer, Projects, IT, Solutions, Problem Solving">
+    <meta name="author" content="Arth Patel">
+
+    <!--AD-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8973606169567639"
+            crossorigin="anonymous"></script>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    {% comment %}<link href="https://fonts.googleapis.com/?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">{% endcomment %}
+
+    <!-- Stylesheet -->
+    <link href="{% static 'assets/plugins/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/smooth-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/lightbox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    {% block style %} {% endblock style %}
+</head>
+<body class="">
+
+<div class="page-loader">
+    <div class="bounceball"></div>
+</div>
+{% block content %}{% endblock content %}
+
+
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+<script src="{% static 'assets/js/gsap.min.js' %}"></script>
+<script src="{% static 'assets/js/ScrollTrigger.min.js' %}"></script>
+<script src="{% static 'assets/js/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'assets/js/lightbox.min.js' %}"></script>
+
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'assets/js/ajax-form.js' %}"></script>
+<script src="{% static 'assets/js/color.js' %}"></script>
+<script>
+    function get_url() {
+        return '{% url "index" %}'
+    }
+
+    function get_csrf() {
+        return "{{ csrf_token }}"
+    }
+</script>
+{% block script %} {% endblock %}
+</body>
+</html>

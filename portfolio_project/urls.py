@@ -23,6 +23,7 @@ from portfolio_project import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("portfolio.urls")),
+    path('ai/', include("AppAI.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
