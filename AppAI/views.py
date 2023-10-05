@@ -6,7 +6,7 @@ from PIL import Image
 import requests
 from django.shortcuts import render
 
-openai.api_key = "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"
+openai.api_key = r"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"
 
 def generate_image(request):
     if request.method == "POST":
