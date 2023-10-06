@@ -1,206 +1,271 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}AI Image Generator{% endblock title %}
 {% block style %}
     <style>
-        /* styles.css */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        html {
+            height: 100%;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: linear-gradient(#141e30, #243b55);
         }
 
-        .chat {
-            max-width: 800px;
-            background-color: #333;
-            border: 1px solid #555;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            margin: 20px;
-            padding: 20px;
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            padding: 40px;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, .5);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the content vertically */
         }
 
-        .chat-header {
-            background-color: #222;
+        .login-box h2 {
+            margin: 0 0 30px;
+            padding: 0;
             color: #fff;
-            padding: 10px;
             text-align: center;
-            border-radius: 10px 10px 0 0;
         }
 
-        .chat-header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .chat-messages {
-            padding: 10px;
-        }
-
-        .chat-message p {
-            background-color: #444;
-            color: #fff;
-            border-radius: 10px;
-            padding: 10px;
-            margin-left: 10px;
-            font-size: 16px;
-            word-wrap: break-word;
-            line-height: 1.5;
+        .login-box .user-box {
             position: relative;
         }
 
-        .chat-input {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the input and button vertically */
-            margin-top: 20px;
-            width: 100%; /* Make the input and button full-width */
-        }
-
-        .input-field {
+        .login-box .user-box input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #222;
-            color: #fff;
-            margin-bottom: 10px; /* Add some spacing between input and button */
-        }
-
-        .generate-button {
-            padding: 10px 20px;
-            background-color: #075E54;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
+            padding: 10px 0;
             font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
-            width: 100%; /* Make the button full-width */
-        }
-
-        .generate-button:hover {
-            background-color: #044C39;
-        }
-
-        .image-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .generated-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        @media screen and (max-width: 768px) {
-            .chat {
-                width: 90%;
-            }
-        }
-
-        /* styles.css */
-
-        /* ... (Previous CSS rules) ... */
-
-        .loading {
-            text-align: center;
             color: #fff;
-            font-size: 18px;
-            margin-top: 20px;
-            display: none;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
         }
 
-        .loading::after {
-            content: "";
+        .login-box .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
+
+        .login-box form a {
+            position: relative;
             display: inline-block;
-            margin-left: 10px;
-            animation: spin 1s linear infinite;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #fff;
-            width: 20px;
-            height: 20px;
+            padding: 10px 20px;
+            color: #03e9f4;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: .5s;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 4px
         }
 
-        @keyframes spin {
+        .login-box form a:hover {
+            background: #03e9f4;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #03e9f4,
+            0 0 25px #03e9f4,
+            0 0 50px #03e9f4,
+            0 0 100px #03e9f4;
+        }
+
+        .login-box form a span {
+            position: absolute;
+            display: block;
+        }
+
+        .login-box form a span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+        }
+
+        @keyframes btn-anim1 {
             0% {
-                transform: rotate(0deg);
+                left: -100%;
             }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .chat {
-                width: 90%;
+            50%, 100% {
+                left: 100%;
             }
         }
 
+        .login-box form a span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: .25s
+        }
 
+        @keyframes btn-anim2 {
+            0% {
+                top: -100%;
+            }
+            50%, 100% {
+                top: 100%;
+            }
+        }
+
+        .login-box form a span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: .5s
+        }
+
+        @keyframes btn-anim3 {
+            0% {
+                right: -100%;
+            }
+            50%, 100% {
+                right: 100%;
+            }
+        }
+
+        .login-box form a span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: .75s
+        }
+
+        @keyframes btn-anim4 {
+            0% {
+                bottom: -100%;
+            }
+            50%, 100% {
+                bottom: 100%;
+            }
+        }
+
+        .generate-img-btn {
+            cursor: pointer;
+        }
     </style>
 {% endblock style %}
 {% block content %}
-    <div class="chat">
-        <div class="chat-header">
-            <h1>AI Image Generator</h1>
-        </div>
-        <div class="chat-messages">
-            <div class="chat-message">
-                <p>Welcome to the AI Image Generator. Enter a description below to generate an image:</p>
-            </div>
-        </div>
-        <form method="POST" action="{% url 'generate_image' %}" class="chat-input" id="image-form">
+    <video class="body-overlay" muted="" autoplay="" loop="" preload="none">
+        <source src="{% static 'assets/images/video1.mp4' %}" type="video/mp4">
+    </video>
+    <div class="login-box">
+        <h2>Generate AI Images</h2>
+        <form method="POST" action="{% url 'generate_image' %}" id="generate-img-form">
             {% csrf_token %}
-            <input type="text" name="text_input" placeholder="Enter your image description..." class="input-field"
-                   {% if prompt %}value="{{ prompt }}"{% endif %}
-            >
-            <div class="generate-button-div">
-                <button type="submit" class="generate-button">Generate</button>
+            <div class="user-box ms-1">
+                <input type="text" name="text_input" required="" {% if prompt %}value="{{ prompt }}"{% endif %}
+                       class="generate-img-inp">
+                <label>Enter your image description...</label>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="generate-img-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Submit
+                </a>
             </div>
         </form>
-        <div class="loading" id="loading" style="display:none;">
-            Generating image... Please wait.
+        <div class="generate-img-output-div">
+
         </div>
-        <div class="image-container">
-            {% if image_url %}
-                <a href="{{ image_url }}" target="_blank" download>
-                    <img src="{{ image_url }}" alt="Generated Image" class="generated-image">
-                </a>
-            {% endif %}
-        </div>
+        <p class="w-100 text-center">© 2023 Arth Patel. All rights reserved.</p>
+
     </div>
 {% endblock content %}
 
 {% block script %}
-    <!-- index.html -->
-
-    <!-- Your existing content -->
-
     <script>
-        const form = document.getElementById("image-form");
+        document.addEventListener("DOMContentLoaded", function () {
+            var video = document.querySelector(".body-overlay");
+            var body = document.querySelector("body");
 
-        form.addEventListener("submit", (e) => {
-            $('.page-loader').delay('100').fadeIn(1000);
+            video.addEventListener("canplaythrough", function () {
+                // Video has loaded, set it as the body background
+                body.style.background = "url(" + video.currentSrc + ") no-repeat center center fixed";
+                body.style.backgroundSize = "cover";
+            });
 
+            // Start loading the video
+            video.load();
         });
-    </script>
 
+        const form = document.getElementById('generate-img-form');
+        form.addEventListener('keypress', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault()
+                $(".generate-img-btn").trigger('click')
+            }
+        });
+
+        $("#generate-img-form").on('click', ".generate-img-btn", function () {
+            let prompt = $('.generate-img-inp').val()
+            if (prompt) {
+                $('.page-loader').delay('100').fadeIn(1000);
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'generate_image' %}",
+                    data: {
+                        'text_input': prompt,
+                        'action': "generate-image-ai",
+                        'csrfmiddlewaretoken': get_csrf()
+                    },
+                    success: function (data) {
+                        $('.page-loader').delay('100').fadeOut(1000);
+                        if (data.code === 'success') {
+                            $('.generate-img-output-div').html("")
+                            $('.generate-img-output-div').append(`<a href="${data.image_url}" target="_blank" download>
+                            <img src="${data.image_url}" alt="Generated Image" class="generated-image">
+                                </a>`)
+                        } else {
+                            alert(data.msg)
+                        }
+                    },
+                    error: function () {
+                        $('.page-loader').delay('100').fadeOut(1000);
+                    }
+                })
+            }
+        })
+
+        function get_csrf() {
+            return "{{ csrf_token }}"
+        }
+    </script>
 {% endblock %}
